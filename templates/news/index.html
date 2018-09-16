@@ -1,0 +1,121 @@
+{% extends 'base/front_base.html' %}
+{% load news_filters %}
+{% block title %}
+首页
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/news/news.css' %}">
+<link rel="stylesheet" href="{% static 'css/base/side.css' %}">
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+{#    创建arttemplate模板#}
+{#    verbatim标签可以将里面的代码忽视格式问题,verbatim需要放在script标签里面#}
+<script id="news_item" type="text/html">
+    {% verbatim %}
+        {{ each newses news index }}
+            <li>
+                <div class="news_img"><a href="/detail/{{ news.id }}/"><img src="{{ news.thumbnail }}" alt=""></a></div>
+                <div class="news_content">
+                    <div class="li_title"><a href="/detail/{{ news.id }}/">{{ news.title }}</a></div>
+                    <div class="li_detail">
+                        {{ news.desc }}
+                    </div>
+                    <div class="li_other">
+                        <span class="li_type"> <a href="#">{{ news.category.name }}</a></span>
+                        <span class="li_time"><a href="#">{{ news.pub_time | timeSince }}</a></span>
+                        <span class="li_author"><a href="#">{{ news.author.username}}</a></span>
+                    </div>
+                </div>
+            </li>
+        {{ /each }}
+    {% endverbatim %}
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="main-container">
+        <div id="carousel-example-generic" class="carousel slide banner" data-ride="carousel">
+        <!-- 小点点 -->
+            <ol class="carousel-indicators">
+                {% for banner in banners %}
+{#                    forloop.counter0表达当前迭代的次数，起始值从0开始#}
+                    {% if forloop.counter0 == 0 %}
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    {% else %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        <!-- 图片-->
+            <div class="carousel-inner" role="listbox">
+                {% for banner in banners %}
+                    {% if forloop.counter0 == 0 %}
+                        <div class="item active">
+                            <a href="{{ banner.link_to }}" target="_blank">
+                                <img src="{{ banner.image_url }}" alt="...">
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="item">
+                            <a href="{{ banner.link_to }}" target="_blank">
+                                <img src="{{ banner.image_url }}" alt="...">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        <!-- 左右切换 -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+         </div>
+     <!-- 新闻标题部分-->
+        <div class="news_title">
+            <ul class="news_inner">
+                    <li class="active" news_category_id="0"><a href="javascript:void(0)">最新资讯</a> </li>
+                {% for category in categories %}
+                    <li news_category_id="{{ category.pk }}"><a href="javascript:void(0)">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+ <!-- 新闻内容-->
+        <div class="news_container">
+            <ul class="news_group">
+                {% for news in newes %}
+                    <li>
+                        <div class="news_img"><a href="{% url 'news:news_detail' news_id=news.pk %}"><img src="{{ news.thumbnail }}" alt=""></a></div>
+                        <div class="news_content">
+                            <div class="li_title"><a href="{% url 'news:news_detail' news_id=news.pk %}">{{ news.title }}</a></div>
+                            <div class="li_detail">
+                                {{ news.desc|truncatewords:20 }}
+                            </div>
+                            <div class="li_other">
+                                <span class="li_type"> <a href="#">{{ news.category.name }}</a></span>
+                                <span class="li_time"><a href="#">{{ news.pub_time | time_since }}</a></span>
+                                <span class="li_author"><a href="#">{{ news.author.username}}</a></span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="more_group">
+            <button class="more_news" style="outline:none" data_page="2">加载更多</button>
+        </div>
+    </div>
+
+    <div class="sidebar-container">
+        {% include 'base/side.html' %}
+    </div>
+</div>
+{% endblock %}

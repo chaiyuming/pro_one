@@ -1,0 +1,90 @@
+<!DOCTYPE html>  <!--声明这是一个html5文件-->
+<html lang="en">  <!--lang 语言-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="qianduanLearning" content="PythonLearnning">
+    <title>{% block title %}
+
+    {% endblock %}</title>    <!--标题-->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_660167_amz72nmp90f.css">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/side.css' %}">
+    <link rel="stylesheet" href="{% static 'sweetalert/sweetalert.css' %}">
+    <script src="{% static 'sweetalert/sweetalert.min.js' %}"></script>
+    <script src="{% static 'sweetalert/xfzalert.js' %}"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="{% static 'js/xfzajax.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
+    {#js/front_base.js必须放在jQqury文件后面 #}
+    <script src="{% static 'js/front_base.js' %}"></script>
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+<header class="header">
+{#    导航栏#}
+    <nav class="nav">
+        <span class="logo_box"></span>
+        <ul class="nav-menu">
+            <li class=><a href="/">创业资讯</a></li>
+            <li><a href="{% url 'course:course_index' %}">创业课堂</a></li>
+            <li><a href="{% url 'payinfo:payinfo_index' %}">付费资讯</a></li>
+            <li><a href="{% url 'news:news_search' %}">搜索</a></li>
+        </ul>
+        <div class="auth_group">
+            <span class=" user-icon icon-denglu iconfont"></span>
+{#            user代表当前的用户，user.is_authenticated验证用户是否登录，user是django自带#}
+            {% if user.is_authenticated %}
+                <a href="Javascript:void(0)">{{user.username}}</a>
+                <div class="user-more-box">
+                    <i class="triangle"></i>
+                    {% if user.is_staff %}
+                        <a href="{% url 'cms:index' %}">管理系统</a>
+                    {% endif %}
+                    <a href="{% url 'pro_one_auth:logout' %}">退出登录</a>
+                </div>
+            {% else %}
+                <a href="{% url 'pro_one_auth:LoginView' %}">登录/</a>
+                <a href="{% url 'pro_one_auth:register' %}">注册</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+{% block content %}
+
+{% endblock %}
+<footer class="footer">
+    <div class="footer_1">
+        <div class="footer-logo"></div>
+        <div class="footer_info">
+            <div class="top_info">
+                  <div class="footer_links">
+                    <ul class="links">
+                        <li><a href="#">关于双临园艺</a></li>
+                        <li>|<a href="#">创业课堂</a></li>
+                        <li>|<a href="#">寻求报道</a></li>
+                        <li>|<a href="#">创业礼包</a></li>
+                    </ul>
+                  </div>
+                <div class="attention">
+                        关于我们:<a class="weixin icon-weixin1 iconfont"><span class="wx"> dfz008</span></a>
+                    <a class="showxl icon-xinlang iconfont"  href="#"><span class="xl">双临园艺</span></a>
+                </div>
+            </div>
+            <div class="bottom_info">
+                <div class="company_info">
+                    <span class="adress"> 地址：杭州市滨江区西兴街道</span>
+                    <span class="phonenum">联系方式：15355341130（工作日10点-18点)</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="footer_2">
+        <span class="in_pc">&copy;2018 双临园艺 浙ICP备11111111号-1 | 增值电信业务经营许可证：浙B2-20080574</span>
+    </div>
+</footer>
+</body>
+</html>

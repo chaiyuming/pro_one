@@ -1,0 +1,45 @@
+{% extends 'base/front_base.html' %}
+
+{% block title %}
+注册
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/auth/register.css' %}">
+    <script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}
+{% block content %}
+<form action="" method="post" >
+    {% csrf_token %}
+    <div class="login_group">
+        <div class="login_title">
+            <span class="title">请注册</span>
+            <span class="going_register"><a href="#">立即登录&gt;</a></span>
+        </div>
+        <div class="login_main">
+            <input type="text" class="register" name="telephone" placeholder="手机号">
+            <input type="text" class="register" name="username" placeholder="用户名">
+        </div>
+        <div class="number">
+            <input type="text" class="register register_change" name="img_captcha" placeholder="图形验证">
+            <img src="{% url 'pro_one_auth:img_captcha' %}" alt="" class="state_right image_captcha">
+        </div>
+        <div class="register_password">
+            <input type="password" class="register" name="password" placeholder="密码">
+            <input type="password" class="register" name="password_repeat" placeholder="再次输入密码">
+        </div>
+        <div class="iphone_msg">
+            <input type="text" class="register register_change" name="sms_captcha" placeholder="短信验证码">
+            <span class="state_right sms_right">发送验证码</span>
+        </div>
+        <button class="login_btn">立即注册</button>
+        {% if messages %}
+            <div class="login_message">
+                {% for message in messages %}
+                    <p style="width: 100% ;height: 50px; line-height: 50px;color: red ;text-align: center">错误提示：{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}
+

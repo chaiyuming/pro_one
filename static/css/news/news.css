@@ -1,0 +1,307 @@
+*,body{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    vertical-align: baseline;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    background-color: #F2F2F2!important;
+}
+a{
+    text-decoration: none!important;
+}
+/********导航栏**********/
+.header{
+    height: 65px;
+    width: 100%;
+    background-color: #3a3a3a;
+
+}
+.nav{
+    height: 65px;
+    width: 1170px;
+    margin: 0 auto;
+    line-height: 65px;
+
+}
+.nav .logo-box{
+    height: 49px;
+    width: 145px;
+    margin-left: 40px;
+    background-image: url("https://www.xfz.cn/static/build/images/logo.png");
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 8px;
+}
+.nav .nav-menu{
+    margin-left:100px;
+    float: left;
+    overflow: hidden;
+}
+.nav ul li {
+    float: left;
+    margin-right: 40px;
+    text-align: center;
+    height: 65px;
+    box-sizing: border-box;
+}
+.nav a{
+    color: #FFFFFF;
+}
+.nav .auth_group{
+    float: right;
+    text-align: center;
+}
+.auth_group .user-icon{
+    color: #FFFFFF;
+}
+.nav-active{
+    border-bottom:4px solid lightskyblue;
+}
+/********导航栏**********/
+/********轮播图**********/
+.main{
+    width: 1170px;
+    overflow: hidden;
+    margin: 20px auto;
+
+}
+.main .main-container{
+    float: left;
+    width: 795px;
+    /*background-color: #FFF;*/
+}
+.main-container .banner{
+    height: 200px;
+    width: 100%;
+     overflow: hidden;
+}
+.banner img{
+    width: 100%;
+    height: 200px!important;
+}
+.banner ol li{
+    margin-left: 15px!important;
+}
+.news_title{
+    background-color: #FFF;
+    width: 100%;
+    height: 66px;
+    border: 1px solid #EEE;
+    margin-top: 10px;
+    border-right: none;
+    border-left: none;
+}
+.news_title .news_inner{
+    overflow: hidden;
+}
+.news_inner li:first-of-type a{
+    border-left: 3px solid #5b86db;
+    padding-left: 10px;
+}
+.news_title ul li{
+    float: left;
+    margin-right: 20px;
+    /*margin-left: 15px;*/
+}
+.news_title ul li a{
+    color: #878787;
+    font-size: 16px;
+    line-height: 66px;
+    text-align: center;
+}
+.news_inner .active a{
+    color: #212121;
+}
+.news_container ul li {
+     width: 100%;
+    height: 200px;
+    border-bottom: 1px solid #EEE;
+
+}
+.news_container .news_group{
+    background-color: #FFF;
+    overflow: hidden;
+}
+.news_group li .news_img{
+    width: 224px;
+    height: 160px;
+    float: left;
+    margin: 20px;
+    /*overflow: hidden;*/
+}
+.news_group li .news_img img{
+    width: 100%;
+    height: 100%;
+}
+.news_group li .news_content{
+    float: right;
+    height: 160px;
+    width: 500px;
+    /*margin: 20px;*/
+    margin-top: 20px;
+    margin-right: 20px;
+    position: relative;
+}
+.news_content .li_title a{
+     color: #212121;
+    width: 100%;
+    font-size: 22px;
+    display: block;
+}
+.news_content .li_title a:hover{
+    color: palevioletred;
+}
+.news_content .li_detail{
+    height: 43px;
+    font-size: 14px;
+    color: #878787;
+    overflow: hidden;
+}
+.li_other a{
+    height: 18px;
+    font-size: 14px;
+    color: #878787;
+}
+.news_content .li_other{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+.news_content .li_other .li_author,.li_time{
+        float: right;
+}
+.news_content .li_author{
+    margin-right: 30px;
+}
+.more_group{
+    text-align: center;
+    border: none;
+}
+.more_group .more_news{
+    border-radius: 5px;
+    width: 400px;
+    height: 40px;
+    background-color: #f7766a;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    /*margin-left: 198px;*/
+}
+.footer{
+    width: 100%;
+    margin-top: 60px;
+}
+.footer .footer_1{
+    width: 100%;
+    height:100px ;
+    background-color:#555e68;
+
+}
+.footer_1 .footer_logo{
+    margin-left: 20px;
+    height: 50px;
+    width: 165px;
+    background: url("https://www.xfz.cn/static/build/images/logo.png") no-repeat;
+    float: left;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.footer_1 .footer_info{
+    float: left;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+.footer_info .top_info{
+    height: 45px;
+    width: 100%;
+    line-height: 45px;
+    text-align: center;
+    margin-top: 25px;
+}
+.footer_1 .footer_info .footer_links{
+    height: 45px;
+    width: 380px;
+    margin-left: 85px;
+    /*margin-top: 25px;*/
+    float: left;
+    overflow: hidden;
+}
+.footer_1 .footer_info .footer_links ul li{
+    float: left;
+    color: #c9c9c9;
+}.footer_1 .footer_info .footer_links ul li a{
+    color: #c9c9c9;
+    margin:0 15px;
+    font-size: 13px;
+    text-align: center;
+}
+.top_info .attention{
+    font-size: 13px;
+    /*width: 305px;*/
+    /*height: 45px;*/
+    color: #C9C9C9;
+    float: left;
+    /*margin-top:20px;*/
+    /*border: 1px solid red;*/
+    /*line-height: 45px;*/
+    /*position: relative;*/
+}
+.attention .weixin,.showxl{
+    color:#C9C9C9;
+    font-size: 15px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+.attention .wx,.xl{
+    font-size: 13px;
+    /*margin-left: 5px;*/
+    color:#C9C9C9;
+}
+.attention .showxl{
+    margin-left: 10px;
+}
+.footer_info .bottom_info{
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 100px;
+    text-align: center;
+}
+.bottom_info .company_info{
+    float: left;
+}
+.bottom_info .adress,.phonenum{
+    font-size: 13px;
+    line-height: 50px;
+    color:#C9C9C9;
+    /*text-align: center;*/
+}
+.bottom_info .phonenum{
+    margin-left: 30px;
+}
+.footer .footer_2{
+    width: 100%;
+    height: 58px;
+    background-color: #383e44;
+    line-height: 58px;
+    text-align: center;
+}
+.footer_2 .in_pc{
+    color: #c9c9c9;
+}
+/*右边的内容*/
+.sidebar-container{
+    float: right;
+    width: 355px;
+    height: 1000px;
+    background-color: white;
+    overflow: hidden;
+    /*border: 1px solid pink;*/
+    /*background-color: #FFF;*/
+}

@@ -1,0 +1,73 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+教师列表
+{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/course/teacher_list.css' %}">
+    <script src="{% static 'js/teachers.js' %}"></script>
+{% endblock %}
+{% block content-heder %}
+<h1>教师信息列表</h1>
+{% endblock %}
+{% block content %}
+    <div class="box">
+        <div class="box-header" >
+    {#        form-inline可以让里面的内容在一行中#}
+            <form action="" class="form-inline">
+                <div class="form-group right-margin">
+                    <label for="title-input">搜索内容:</label>
+                    {% if title %}
+                        <input type="text" class="form-control" name="title" placeholder="请输入关键字" id="title-input" value="{{ title }}">
+                    {% else %}
+                        <input type="text" class="form-control" name="title" placeholder="请输入关键字" id="title-input">
+                    {% endif %}
+                </div>
+                <div class="form-group right-margin">
+                    <label for="group-input">分组:</label>
+                    <select name="group" id="group-input" class="form-control">
+                        <option value="0">-------全部------</option>
+                        {% for group in groups %}
+                            {% if group_id == group.pk %}
+                                <option value="{{ group.pk }}" selected>{{ group.name }}</option>
+                            {% else %}
+                                <option value="{{ group.pk }}">{{ group.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <button class="btn btn-primary right-margin">查询</button>
+                <a href="{% url 'cms:teacher_list' %} " class="right-margin">清除查询</a>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-body">
+                    <ul>
+                        {% for teacher in courseteachers %}
+                            <li class="content" list-id="{{ teacher.pk }}">
+                                    <div class="basic-info">
+                                        <p><strong>教师姓名：</strong>{{ teacher.username }}</p>
+                                        <p><strong>教师职称：</strong>{{ teacher.jobtitle }}</p>
+                                        <p><strong>所属分组：</strong>{{ teacher.category.name }}</p>
+                                    </div>
+                                    <div class="profile">
+                                        <label ><strong>个人简介:</strong></label>
+                                        <span>{{ teacher.profile | safe }}</span>
+                                    </div>
+                                    <div class="avatar">
+                                        <img src="{{ teacher.avatar }}" alt="6">
+                                    </div>
+                                    <div class="more-btn">
+                                        <button class="btn btn-danger pull-right delete-list-btn" teacher-list-id="{{ teacher.pk }}">删除</button>
+                                        <a href="{% url 'cms:edit_teacher_list' %}?pk={{ teacher.pk }}" class="btn btn-warning pull-right">编辑</a>
+                                    </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

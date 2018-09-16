@@ -1,0 +1,44 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}
+添加员工
+{% endblock %}
+{% block header %}
+{#    <script src="{% static 'js/staffs.js' %}"></script>#}
+{% endblock %}
+{% block content-heder %}
+    <h1>添加员工分组</h1>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <form action="" method="post">
+                {% csrf_token %}
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="telephone">手机号码：</label>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div style="color: red;height: 35px;line-height: 35px;font-weight: bold">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <input type="text" class="form-control" name="telephone" placeholder="手机号码">
+                        </div>
+                        <div class="checkbox">
+                            {% for group in groups %}
+                                <label>
+                                    <input type="checkbox" name="groups" value="{{ group.pk }}">{{ group.name }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                <div class="footer">
+                    <button class="btn btn-primary pull-right submit-btn " staff-group={{ groups }}>提交</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

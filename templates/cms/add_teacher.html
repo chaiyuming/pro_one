@@ -1,0 +1,103 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+{% if teachers %}
+    编辑教师信息
+{% else %}
+    添加教师信息
+{% endif %}
+{% endblock %}
+{% block header %}
+    {#    导入千牛云的SDK，必须在js/wirte_news.js上面#}
+    <script src="https://unpkg.com/qiniu-js@2.4.0/dist/qiniu.min.js"></script>
+{#    .config.js一定要放在.all.min.js之前#}
+    <script src="{% static 'ueditor/ueditor.config.js' %}"></script>
+    <script src="{% static 'ueditor/ueditor.all.min.js' %}"></script>
+    <script src="{% static 'js/teachers.js' %}"></script>
+{% endblock %}
+{% block content-heder %}
+{% if teachers %}
+<h1>编辑讲师信息</h1>
+{% else %}
+<h1>添加教师信息</h1>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <form action="" method="post">
+{#                    {% csrf_token %}#}
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="username-form">姓名:</label>
+                            {% if teachers %}
+                                <input type="text" class="form-control" name="username" id="username-form" placeholder="请输入教师名字" value="{{ teachers.username }}">
+                            {% else %}
+                                <input type="text" class="form-control" name="username" id="username-form" placeholder="请输入教师名字">
+                            {% endif %}
+                        </div>
+                        <div class="from-group">
+                            <label for="teacher-category" >分组:</label>
+                            <select name="category" id="teacher-category" class="form-control">
+                                <option value="0">请输入教师的分组</option>
+                                {% for group in categories %}
+                                    {% if teachers and teachers.category.pk == group.pk %}
+                                    <option value="{{ group.pk }}" selected>{{ group.name }}</option>
+                                    {% else %}
+                                    <option value="{{ group.pk }}">{{ group.name }}</option>
+                                    {% endif %}
+                            {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobtitle-form">职称:</label>
+                            {% if teachers %}
+                            <input type="text" class="form-control" name="jobtitle" id="jobtitle-form" placeholder="请输入教师职称" value="{{ teachers.jobtitle }}">
+                            {% else %}
+                            <input type="text" class="form-control" name="jobtitle" id="jobtitle-form" placeholder="请输入教师职称">
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar-form">照片:</label>
+                            <div class="input-group">
+                                {% if teachers %}
+                                <input type="text" class="form-control" name="avatar"  id="avatar-form" placeholder="请上传教师照片" value="{{ teachers.avatar }}">
+                                {% else %}
+                                <input type="text" class="form-control" name="avatar"  id="avatar-form" placeholder="请上传教师照片">
+                                {% endif %}
+                                <div class="input-group-btn">
+                                    <label class="btn btn-default btn-file">
+                                        上传图片
+                                        <input type="file" class="hidden" name="btn" id="data-btn">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="progress-group" style="display: none">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20"
+                                    aria-valuemin="0" aria-valuemax="100" style="width:0">
+                                    0%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-form">简介:</label>
+                            {% if teachers %}
+                            <script id="editor" type="text/plain">{{ teachers.profile | safe}}</script>
+                            {% else %}
+                            <script id="editor" type="text/plain"></script>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+                    <div class="box-footer ">
+                        <button type="submit" class="btn btn-primary pull-right" id="submit-btn" teacher-list-id="{{ teachers.pk }}">添加</button>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

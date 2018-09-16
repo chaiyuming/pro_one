@@ -1,0 +1,72 @@
+{% extends 'base/front_base.html' %}
+{% load news_filters %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/news/news_detail.css' %}">
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/news_detail.js' %}"></script>
+<script id="comment-data" type="text/html">
+   {% verbatim %}
+        <li>
+            <div class="top-info-group">
+                <div    class="user-info-group">
+                    <img src="http://7xl0ey.com2.z0.glb.qiniucdn.com/1458392835_51884.jpg" alt="">
+                    <span class="username-group">{{ comment.author.username }}</span>
+                </div>
+                <p class="time-group">{{ comment.pub_time | timeSince }}</p>
+            </div>
+            <p class="comment-content-group">{{ comment.content }}</p>
+        </li>
+   {% endverbatim %}
+</script>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="main-container">
+            <div class="article-group">
+                    <p class="article-title-group">{{ newses.title }}</p>
+                    <div class="article-info-group">
+                        <div class="left-info-group">
+                            <span class="author-time-group">{{ newses.author.username }}</span>
+                            <span class="author-time-group">{{ newses.pub_time | time_since }}</span>
+                            <span class="category-group">{{ newses.category.name }}</span>
+                        </div>
+                    </div>
+                    <article class="article-content-group">
+                            {{ newses.content | safe }}
+                    </article>
+                    <div class="comment-group">
+                        <h2 class="comment-title">文章评论({{ newses.comments.count }})</h2>
+                        <textarea id="comment-textarea" placeholder="请填写评论" cols="30" rows="10" class="comment-textarea logined-textarea"></textarea>
+{#                   判断用户是否已经被授权#}
+{#                        {% if user.is_authenticated %}#}
+{#                            <textarea id="comment-textarea" placeholder="请填写评论" cols="30" rows="10" class="comment-textarea logined-textarea"></textarea>#}
+{#                        {% else %}#}
+{#                            <textarea readonly placeholder="立即登录，参与评论~" cols="30" rows="10" class="comment-textarea nologin-textarea"></textarea>#}
+{#                        {% endif %}#}
+                        <div class="submit-comment-group">
+                            <button class="submit-comment-btn" id="submit-comment-btn" data-news-id="{{ newses.pk }}">评论</button>
+                        </div>
+                    </div>
+                    <ul class="comment-list-group">
+{#                    用for循环遍历新闻的评论，newses.comments.all在.model.py模型中有定义，表示获取新闻下所有的评论#}
+                        {% for comment in newses.comments.all %}
+                            <li>
+                                <div class="top-info-group">
+                                    <div class="user-info-group">
+                                        <img src="http://7xl0ey.com2.z0.glb.qiniucdn.com/1458392835_51884.jpg" alt="">
+                                        <span class="username-group">{{ comment.author.username }}</span>
+                                    </div>
+                                    <p class="time-group">{{ comment.pub_time | time_since }}</p>
+                                </div>
+                                <p class="comment-content-group">{{ comment.content }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+        </div>
+        <div class="sidebar-container">
+            {% include 'base/side.html' %}
+        </div>
+    </div>
+{% endblock %}

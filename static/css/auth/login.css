@@ -1,0 +1,70 @@
+.login_group{
+    width: 400px;
+    background-color: #FFFFFF;
+    margin: 50px auto;
+    padding: 0 20px;
+    /*box-sizing: border-box;*/
+}
+.login_title{
+    /*float: left;*/
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding-top: 20px;
+    font-size: 22px;
+
+}
+.login_title .title{
+    float: left;
+    border-bottom: 2px solid deepskyblue ;
+    padding-bottom: 10px;
+}
+.login_title .going_register{
+    float: right;
+}
+.login_group .login_main{
+    width: 100%;
+    height: 100px;
+
+}
+.login_main .login_phone,.login_pwd{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.login_other_info{
+    height: 50px;
+    /*border: 1px solid red;*/
+    line-height: 50px;
+    margin-top: 20px;
+}
+
+.login_other_info span{
+    float: left;
+}
+/*.login_other_info span .remember-pwd{*/
+    /*margin-left: 70px;*/
+/*}*/
+.login_other_info .forget_pwd{
+    float: right;
+    color: #c9c9c9;
+}
+.login_other_info .forget_pwd:hover{
+    color: red;
+}
+.login_btn{
+    height: 50px;
+    width: 100%;
+    background-color: deepskyblue;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #F2F2F2;
+    margin-top: 10px;
+}

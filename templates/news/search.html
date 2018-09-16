@@ -1,0 +1,95 @@
+{% extends 'base/front_base.html' %}
+{% load news_filters %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/news/search.css' %}">
+    <style>
+        .search_highlight{
+            color: red;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+		<div class="main-container">
+			<div class="search-group">
+                <form action="" method="get">
+                    <input type="text" class="search-input" placeholder="请输入关键字" name="q">
+                    <button class="search-btn">搜索</button>
+                </form>
+			</div>
+            <div class="list-group">
+                <div class="recommend-list" >
+                    <p class="list-search-title">热门推荐</p>
+                        <ul class="list-content-group">
+                            {% for new2 in news2 %}
+                                    <li>
+                                        <div class="thumbnail-group">
+                                            <a href="{% url 'news:news_detail' news_id=new2.pk %}">
+                                                <img src="{{ new2.thumbnail }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="content-group">
+                                            <p class="title-group">
+                                                <a href="{% url 'news:news_detail' news_id=new2.pk %}" class="news_title">
+                                                    {{ new2.title }}
+                                                </a>
+                                            </p>
+                                            <p class="desc-group">{{ new2.desc }}</p>
+                                            <div class="content-footer">
+                                                <span class="category-group">{{ new2.category.name }}</span>
+                                                <span class="time-group">{{ new2.pub_time | time_since}}</span>
+                                                <span class="author-group">{{ new2.author.username }}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                            {% endfor %}
+                    </ul>
+                </div>
+                <div class="result-list hide">
+                {% if news %}
+                    <p class="list-search-title">搜索结果({{ news.count }})</p>
+                {% else %}
+                    <p class="list-search-title">搜索结果(0)</p>
+                {% endif %}
+                    <ul class="list-content-group">
+                        {% if news %}
+                            {% for new in news %}
+                                <li>
+                                    <div class="thumbnail-group">
+                                        <a href="{% url 'news:news_detail' news_id=new.pk %}">
+                                            <img src="{{ new.thumbnail }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="content-group">
+                                        <p class="title-group">
+                                            <a href="{% url 'news:news_detail' news_id=new.pk %}" class="news_title">
+                                                {{ new.title }}
+                                            </a>
+                                        </p>
+                                        <p class="desc-group">{{ new.desc }}</p>
+                                        <div class="content-footer">
+                                            <span class="category-group">{{ new.category.name }}</span>
+                                            <span class="time-group">{{ new.pub_time | time_since}}</span>
+                                            <span class="author-group">{{ new.author.username }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-result-up">没有相关内容</p>
+                            <p class="no-result-down">请调整关键词搜索</p>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+		</div>
+		<div class="sidebar-container">
+            {% include 'base/side.html' %}
+        </div>
+	</div>
+{% endblock %}

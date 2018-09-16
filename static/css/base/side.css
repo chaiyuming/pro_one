@@ -1,0 +1,132 @@
+
+.sidebar_container_group_first{
+    width:315px;
+    /*margin: 20px;*/
+    margin-left: 20px;
+}
+.sidebar_container_group_first .sidebar_first{
+    width:315px;
+    height:60px;
+    line-height: 60px;
+}
+.sidebar_title{
+    /*float: left;*/
+    font-size: 18px;
+    color: #212121;
+    font-weight: 500;
+    text-align: center;
+}
+.sidebar_group_more a {
+    float: right;
+    font-size: 14px;
+    color: #999;
+}
+.sidebar_group_more a:hover{
+    color:pink;
+}
+.sidebar_first_img{
+    width: 315px;
+    height: 225px;
+    position: relative;
+}
+.sidebar_first_img img{
+    width: 315px;
+    height: 225px;
+    display: inline-block;
+    z-index:1001;
+}
+.sidebar_first_img .img_title{
+   position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    background-color: rgba(0,0,0,.5);
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    z-index:1000;
+    padding: 0 20px;
+    /*border: 1px solid red;*/
+}
+.book_info li{
+    height: 42px;
+    line-height: 41px;
+    /*border: 1px solid #e63929;*/
+}
+.book_info li a .book_avtive{
+    height: 20px;
+    line-height: 20px;
+    width: 42px;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    color:#e63929;
+    border: 1px solid #e63929;
+}
+.book_info li a .book_content{
+    margin-left: 10px;
+    color: #555;
+}
+.book_info li a .book_end {
+    height: 20px;
+    line-height: 20px;
+    width: 42px;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+.book_info ul li {
+    cursor: pointer;
+}
+.book_info ul li:hover{
+    background-color: #F2F2F2;
+}
+.book_info ul{
+    border-bottom: 1px solid #999999;
+}
+
+/*在线课堂*/
+.sidebar_container_group_second{
+    width:315px;
+    margin-left: 20px;
+    /*border-bottom: 1px solid #999999;*/
+}
+.sidebar_container_group_second .sidebar_second{
+    width:315px;
+    height:40px;
+    line-height: 40px;
+
+}
+.sidebar_second_img img{
+    width: 315px;
+    height: 176px;
+    display: inline-block;
+    z-index:2;
+}
+.sidebar_container_group_attention{
+    width:315px;
+    margin-left: 20px;
+}
+.sidebar_attention_left{
+    width: 158px;
+    float: left;
+}
+.sidebar_attention_title{
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    color: #212121;
+    font-weight: 500;
+}
+.sidebar_attention_left .zhihu,.tout,.xinl{
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+}
+.title_size{
+    font-size: 14px;
+    margin-left: 20px;
+}

@@ -1,0 +1,60 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}
+管理员工
+{% endblock %}
+
+{% block content-heder %}
+<h1>员工管理</h1>
+{% endblock %}
+
+{% block header %}
+    <script src="{% static 'js/staffs.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <a href="{% url 'cms:add_staff' %}" class="btn btn-primary pull-right">新增员工</a>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>手机号码</th>
+                            <th>所属分组</th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for staff in staffs %}
+                            <tr>
+                                <td>{{ staff.username }}</td>
+                                <td>{{ staff.telephone }}</td>
+                                <td>
+                                    {% if staff.is_superuser %}
+                                        超级管理员
+                                    {% else %}
+                            {#     因为groups方法返回quertset对象所以要调用all方法，变成NodeList 类型的对象，可以遍历以及可以通过索引访问，索引值从 0 开始  #}
+                                        {% for group in staff.groups.all %}
+                                               {{ group.name }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-info btn-xs">编辑</button>
+                                    <button class="btn btn-danger btn-xs delete-id" staff-data-id="{{ staff.telephone }} ">删除</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+新闻分类
+{% endblock %}
+
+{% block header %}
+    <script src="{% static 'js/news_category.js' %}"></script>
+{% endblock %}
+
+{% block content-heder %}
+<h1>新闻分类</h1>
+{% endblock %}
+
+{% block content %}
+{#    代码是从https://adminlte.io/themes/AdminLTE/pages/forms/general.html复制的#}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <button id="add-btn" class="btn btn-primary pull-right">添加分类</button>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered">
+{#                    thead表示表头，表头中用<tr> <th>#}
+                    <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>新闻数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                                <tr  data-pk="{{ category.pk }}" data-name="{{ category.name }}">
+                                    <td>{{ category.name }}</td>
+                                    <td>{{ category.news.count }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-xs edit-btn">编辑</button>
+                                        <button class="btn btn-danger btn-xs del-btn">删除</button>
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

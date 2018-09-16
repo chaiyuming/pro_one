@@ -1,0 +1,110 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+{% if course %}
+编辑课程
+{% else %}
+发布课程
+{% endif %}
+{% endblock %}
+
+{% block header %}
+    <script src="{% static 'ueditor/ueditor.config.js' %}"></script>
+    <script src="{% static 'ueditor/ueditor.all.min.js' %}"></script>
+    <script src="{% static 'js/pub_course.js' %}"></script>
+{% endblock %}
+{% block content-heder %}
+{% if course %}
+<h1>编辑课程</h1>
+{% else %}
+<h1>发布课程</h1>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+           <div class="box-body">
+               <form action="" method="post">
+                   <div class="form-group">
+                       <label for="course-title">标题</label>
+                       {% if course %}
+                           <input type="text" class="form-control" name="title" placeholder="请输入课程标题" id="course-title" value="{{ course.title }}">
+                        {% else %}
+                            <input type="text" class="form-control" name="title" placeholder="请输入课程标题" id="course-title">
+                       {% endif %}
+                   </div>
+                   <div class="form-group">
+                       <label for="course-category">分类</label>
+                       <select name="category" id="course-category" class="form-control">
+                           <option value="0">全部课程分类</option>
+                           {% for category in categories %}
+                               {% if course and course.category.pk == category.pk %}
+                                    <option value="{{ category.pk }}" selected>{{ category.name }}</option>
+                               {% else %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                               {% endif %}
+                           {% endfor %}
+                       </select>
+                   </div>
+                   <div class="form-group">
+                       <label for="course-teacher">讲师</label>
+                       <select name="teacher_name" id="course-teacher" class="form-control">
+                            <option value="0">讲师姓名</option>
+                           {% for teacher in teachers %}
+                               {% if course and course.teacher.pk == teacher.pk %}
+                                    <option value="{{ teacher.pk }}" selected>{{ teacher.username }}</option>
+                               {% else %}
+                                    <option value="{{ teacher.pk }}">{{ teacher.username }}</option>
+                               {% endif %}
+                           {% endfor %}
+                       </select>
+                   </div>
+                   <div class="form-group">
+                       <label for="course-adress">视频地址</label>
+                       {% if course %}
+                            <input type="text" class="form-control" id="course-adress" placeholder="请输入课程地址" value="{{ course.video_url }}">
+                       {% else %}
+                            <input type="text" class="form-control" id="course-adress" placeholder="请输入课程地址">
+                       {% endif %}
+                   </div>
+                   <div class="form-group">
+                       <label for="course-cover">封面图</label>
+                       {% if course %}
+                            <input type="text" class="form-control" id="course-cover" placeholder="请输入封面图" value="{{ course.cover_url }}">
+                       {% else %}
+                            <input type="text" class="form-control" id="course-cover" placeholder="请输入封面图">
+                       {% endif %}
+                   </div>
+                    <div class="form-group">
+                       <label for="course-time">时长</label>
+                        {% if course %}
+                            <input type="text" class="form-control" id="course-time" placeholder="请输入视频时长" value="{{ course.durarion }}">
+                        {% else %}
+                            <input type="text" class="form-control" id="course-time" placeholder="请输入视频时长">
+                        {% endif %}
+                   </div>
+                   <div class="form-group">
+                       <label for="course-price">价格</label>
+                       {% if course %}
+                            <input type="text" class="form-control" id="course-price" placeholder="请输入课程价格" value="{{ course.price }}">
+                       {% else %}
+                            <input type="text" class="form-control" id="course-price" placeholder="请输入课程价格">
+                       {% endif %}
+                   </div>
+                    <div class="form-group">
+                       <label for="course-profile">简介:</label>
+                        {% if course %}
+                            <script id="editor" type="text/plain">{{ course.profile | safe}}</script>
+                        {% else %}
+                            <script id="editor" type="text/plain"></script>
+                        {% endif %}
+                   </div>
+                </form>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right" id="course-button"  course-data-id="{{ course.pk }}">发布课程</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

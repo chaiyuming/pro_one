@@ -1,0 +1,46 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+课程分类
+{% endblock %}
+{% block content-heder %}
+<h1>课程分类</h1>
+{% endblock %}
+{% block header %}
+    <script src="{% static 'js/pub_course.js'%}"></script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <button class="btn btn-primary pull-right add-course-category">添加分类</button>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>课程数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr data-id="{{ category.pk }}" data-name="{{ category.name }}">
+                                <td>{{ category.name }}</td>
+                                <td>{{ category.course.count }}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-xs edit-btn">编辑</button>
+                                    <button class="btn btn-danger btn-xs delete-btn">删除</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="box-footer"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
