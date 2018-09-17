@@ -59,6 +59,7 @@ $(function () {
                 console.log(result['data']);
             //       然后将新闻信息渲染到arttemplate中
                 var tpl=template('news_item',{'newses':newses});
+                //ul标签的值
                 var newsGroup=$('.news_group');
                 // .empty()可以将newsGruop下的标签清除掉
                 newsGroup.empty();

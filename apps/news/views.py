@@ -92,46 +92,36 @@ def add_comment(request):
         return restful.params_error(message=form.get_error())
 
 
+# def news_search(request):
+#     # q在前端中已经定义
+#     q = request.GET.get('q')
+#     name=NewsCategory.objects.get(name='金融科技')
+#     news2 = News.objects.filter(category=name)
+#     # news2 = News.objects.all()
+#     if q and q !='None':
+#         news = News.objects.filter(Q(title__icontains=q) | Q(content__contains=q) | Q(category__name__contains=q))
+#         context = {
+#             'news': news,
+#             'news2': news2
+#         }
+#     else:
+#         context = {
+#             'news2': news2
+#         }
+#     return render(request, 'news/search.html', context=context)
 def news_search(request):
-    # q在前端中已经定义
-    q = request.GET.get('q')
     name=NewsCategory.objects.get(name='金融科技')
     news2 = News.objects.filter(category=name)
-    # news2 = News.objects.all()
-    if q and q !='None':
-        news = News.objects.filter(Q(title__icontains=q) | Q(content__contains=q) | Q(category__name__contains=q))
-        context = {
-            'news': news,
-            'news2': news2
-        }
-    else:
-        context = {
-            'news2': news2
-        }
+    context = {
+        'news2': news2
+    }
     return render(request, 'news/search.html', context=context)
-# class NewsSreach(View):
-#     def get(self,request):
-#         # q在前端中已经定义
-#         q = request.GET.get('q')
-#         news2 = News.objects.all()
-#         if q:
-#             news = News.objects.filter(Q(title__icontains=q) | Q(content__contains=q) | Q(category__name__contains=q))
-#             print('*' * 30)
-#             print(news.values())
-#             print('*' * 30)
-#             context = {
-#                 'news': news,
-#                 'news2': news2
-#             }
-#         else:
-#             context = {
-#                 'news2': news2
-#             }
-#         return render(request, 'news/search.html', context=context)
-#     def search(self,q):
-#         news = News.objects.filter(Q(title__icontains=q) | Q(content__contains=q) | Q(category__name__contains=q))
-#         serializer=NewsSerializers(news,many=True)
-#         return restful.result(data=serializer.data)
+def search_list(request):
+    q=request.GET.get('q')
+    if q and q != 'None':
+        news = News.objects.filter(Q(title__icontains=q) | Q(content__contains=q) | Q(category__name__contains=q))
+        serializer=NewsSerializers(news,many=True)
+        return restful.result(data=serializer.data)
 
 
 

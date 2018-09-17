@@ -3,6 +3,8 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/news/search.css' %}">
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
     <style>
         .search_highlight{
             color: red;
@@ -11,6 +13,32 @@
             display: none;
         }
     </style>
+<script id="search_item" type="text/html">
+    {% verbatim %}
+        {{ each news new index }}
+            <li>
+                <div class="thumbnail-group">
+                    <a href="/news_detail/{{ new.id }}/">
+                        <img src="{{ new.thumbnail }}" alt="">
+                    </a>
+                </div>
+                <div class="content-group">
+                    <p class="title-group">
+                        <a href="/news_detail/{{ new.id }}/" class="news_title">
+                            {{ new.title }}
+                        </a>
+                    </p>
+                    <p class="desc-group">{{ new.desc }}</p>
+                    <div class="content-footer">
+                        <span class="category-group">{{ new.category.name }}</span>
+                        <span class="time-group">{{ new.pub_time | timeSince}}</span>
+                        <span class="author-group">{{ new.author.username }}</span>
+                    </div>
+                </div>
+            </li>
+        {{ /each }}
+    {% endverbatim %}
+</script>
 {% endblock %}
 
 {% block content %}
