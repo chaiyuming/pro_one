@@ -23,23 +23,29 @@
 //     });
 //
 //
-//         $(function () {
-//             var searchBtn=$('.search-btn');
-//             var resultList=$('.result-list');
-//             // 要么你就用 Ajax  用表单回自定义刷新
-//             searchBtn.click(function (ev) {
-//                 ev.preventDefault();
-//                 var searchVal=$('.search-input').val();
-//                 console.log(searchVal);
-//                 if(searchVal.trim()){
-//                     resultList.addClass('hide').siblings('div.recommend-list').removeClass('hide');
-//                 }else {
-//                     alert('bunengweikong')
+// $(function () {
+//     var searchBtn=$('.search-btn');
+//     // 要么你就用 Ajax  用表单回自定义刷新
+//     searchBtn.click(function (ev) {
+//         ev.preventDefault();
+//         var resultList=$('.result-list');
+//         var searchVal=$('.search-input').val();
+//         console.log(searchVal);
+//         xfzajax.get({
+//             'url':'/search_list/',
+//             'success':function (result) {
+//                 console.log('===========');
+//                 console.log(result['data']);
+//                 if(result['code']===200){
+//                     if(searchVal.trim()){
+//                         resultList.removeClass('hide').siblings().addClass('hide');
+//                     }
 //                 }
-//             });
+//             }
 //         });
+//     });
+// });
 // ajax代码
-
 $(function () {
     var searchBtn=$('.search-btn');
     searchBtn.click(function (ev) {
@@ -56,9 +62,9 @@ $(function () {
                     var resultList=$('.result-list');
                     var news=result['data'];
                     var tpl =template('search_item',{'news':news});
-                    var ulVal=$('.list-content-group');
-                    ulVal.empty();
-                    ulVal.append(tpl);
+                    var GroupVal=$('.list-content-group');
+                    // GroupVal.empty();
+                    GroupVal.append(tpl);
                     resultList.removeClass('hide').siblings().addClass('hide');
                     console.log('==========');
                     console.log(news);
@@ -71,3 +77,19 @@ $(function () {
         });
     });
 });
+
+// $(function () {
+//     var searchBtn=$('.search-btn');
+//     searchBtn.click(function (ev) {
+//         ev.preventDefault();
+//         var resultList=$('.result-list');
+//         var searchVal=$('.search-input').val();
+//         console.log(searchVal);
+//
+//         resultList.removeClass('hide').siblings().addClass('hide');
+//
+//
+//
+//
+//     });
+// });

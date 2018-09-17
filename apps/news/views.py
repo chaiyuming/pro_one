@@ -109,6 +109,7 @@ def add_comment(request):
 #             'news2': news2
 #         }
 #     return render(request, 'news/search.html', context=context)
+# 搜索功能首页
 def news_search(request):
     name=NewsCategory.objects.get(name='金融科技')
     news2 = News.objects.filter(category=name)
@@ -116,6 +117,7 @@ def news_search(request):
         'news2': news2
     }
     return render(request, 'news/search.html', context=context)
+# 搜索新闻功能
 def search_list(request):
     q=request.GET.get('q')
     if q and q != 'None':
