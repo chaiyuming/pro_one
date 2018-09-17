@@ -18,13 +18,13 @@
         {{ each news new index }}
             <li>
                 <div class="thumbnail-group">
-                    <a href="/news_detail/{{ new.id }}/">
+                    <a href="/detail/{{ new.id }}/">
                         <img src="{{ new.thumbnail }}" alt="">
                     </a>
                 </div>
                 <div class="content-group">
                     <p class="title-group">
-                        <a href="/news_detail/{{ new.id }}/" class="news_title">
+                        <a href="/detail/{{ new.id }}/" class="news_title">
                             {{ new.title }}
                         </a>
                     </p>

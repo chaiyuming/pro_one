@@ -59,12 +59,13 @@ $(function () {
                     var ulVal=$('.list-content-group');
                     ulVal.empty();
                     ulVal.append(tpl);
+                    resultList.removeClass('hide').siblings().addClass('hide');
                     console.log('==========');
                     console.log(news);
                     //$.trim()函数会移除字符串开始和末尾处的所有换行符，空格(包括连续的空格)和制表符。如果这些空白字符在字符串中间时，它们将被保留，不会被移除。
-                    if (searchVal.trim()) {
-                        resultList.addClass('hide').siblings().removeClass('hide');
-                    }
+                    // if (searchVal.trim()) {
+                    //     resultList.addClass('hide').siblings().removeClass('hide');
+                    // }
                 }
             }
         });
