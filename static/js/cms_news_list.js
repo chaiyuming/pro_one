@@ -47,8 +47,8 @@ $(function () {
                             window.location = window.location.href;
                         }
                     }
-                })
+                });
             }
-        })
-    })
+        });
+    });
 });
