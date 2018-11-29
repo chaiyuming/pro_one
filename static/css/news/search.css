@@ -118,3 +118,7 @@
 .main-container .list-group .list-content-group li .content-group .content-footer .time-group {
   float: right;
 }
+
+.add-class{
+  display: none;
+}

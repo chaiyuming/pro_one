@@ -129,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
+# 失去一定要更改，固定写法，代表上海时区
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,reverse
 from .forms import LoginForm,RegisterForm
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import View
+# 导入自带消息模块。
 from django.contrib import messages
 from utils.captcha.hycaptcha import Captcha
 from io import BytesIO
