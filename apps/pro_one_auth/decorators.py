@@ -23,7 +23,7 @@ def xfz_permissoin_required(model):
     def decorator(viewfunc):
         @wraps(viewfunc)
         def _wrapper(request,*args,**kwargs):
-
+            # 获取模型的所有权限
             content_type=ContentType.objects.get_for_model(model)
             permissions=Permission.objects.filter(content_type=content_type)
             # has_perm判断用户拥有哪个权限,只能采用字符串的形式来判断

@@ -41,8 +41,6 @@ class LoginView(View):
         else:
             messages.info(request,'用户不存在，请注册！')
             return redirect(reverse('pro_one_auth:LoginView'))
-
-
 #Form表单版本的注册代码
 # class RegisterView(View):
 #     def get(self,request):

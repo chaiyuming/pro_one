@@ -61,14 +61,11 @@ class NewsList(View):
             newses=newses.filter(pub_time__range=(start_time,end_time))
         #     过滤标题中函数指定的新闻
         if title and title!='None':
-            print('======================')
-            print(title)
             # __icontains表示包含哪些内容
             newses=newses.filter(title__icontains=title)
         #       过滤出分类函数指定的新闻
         if category_id !=0 :
             newses=newses.filter(category=category_id)
-
         # 创建对象
         paginator = Paginator(newses, 2)
         # 某一页的数据
@@ -108,7 +105,6 @@ class NewsList(View):
         else:
             left_has_more=True
             left_page=range(current_page-count_pages,current_page)
-
         # 当前页右边
         if current_page >= total_pages-count_pages-1:
             right_page=range(current_page+1,total_pages+1)
@@ -121,7 +117,6 @@ class NewsList(View):
             'right_page':right_page,
             'left_has_more':left_has_more,
             'right_has_more':right_has_more,
-
         }
 # 新闻列表中的编辑按钮
 @method_decorator([xfz_permissoin_required(News)],name='dispatch')
@@ -150,7 +145,6 @@ class EditNewsView(View):
             return restful.ok()
         else:
             return restful.params_error(message=form.get_error())
-
 # 新闻列表中删除按钮
 @xfz_permissoin_required(News)
 def DeleteNewsbtn(request):
@@ -160,7 +154,6 @@ def DeleteNewsbtn(request):
         return restful.ok()
     except:
         return restful.params_error(message='该新闻不存在')
-
 
 # @method_decorator是将一些装饰器装饰在类视图上的，然后在里面可以放一些装饰器
 # login_url为登录的url
@@ -303,6 +296,7 @@ def upload_file(request):
     # request.FILES获取所有的文件。
     # 参照request.GET.get('username'),这里的upfile相当于username
     file=request.FILES.get('upfile')
+    # 防止传了个空文件
     if not file:
         return restful.params_error(message='没有上传任何文件！')
     name=file.name

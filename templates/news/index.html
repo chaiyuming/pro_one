@@ -91,22 +91,22 @@
  <!-- 新闻内容-->
         <div class="news_container">
             <ul class="news_group">
-                {% for news in newes %}
-                    <li>
-                        <div class="news_img"><a href="{% url 'news:news_detail' news_id=news.pk %}"><img src="{{ news.thumbnail }}" alt=""></a></div>
-                        <div class="news_content">
-                            <div class="li_title"><a href="{% url 'news:news_detail' news_id=news.pk %}">{{ news.title }}</a></div>
-                            <div class="li_detail">
-                                {{ news.desc|truncatewords:20 }}
-                            </div>
-                            <div class="li_other">
-                                <span class="li_type"> <a href="#">{{ news.category.name }}</a></span>
-                                <span class="li_time"><a href="#">{{ news.pub_time | time_since }}</a></span>
-                                <span class="li_author"><a href="#">{{ news.author.username}}</a></span>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
+{#                {% for news in newes %}#}
+{#                    <li>#}
+{#                        <div class="news_img"><a href="{% url 'news:news_detail' news_id=news.pk %}"><img src="{{ news.thumbnail }}" alt=""></a></div>#}
+{#                        <div class="news_content">#}
+{#                            <div class="li_title"><a href="{% url 'news:news_detail' news_id=news.pk %}">{{ news.title }}</a></div>#}
+{#                            <div class="li_detail">#}
+{#                                {{ news.desc|truncatewords:20 }}#}
+{#                            </div>#}
+{#                            <div class="li_other">#}
+{#                                <span class="li_type"> <a href="#">{{ news.category.name }}</a></span>#}
+{#                                <span class="li_time"><a href="#">{{ news.pub_time | time_since }}</a></span>#}
+{#                                <span class="li_author"><a href="#">{{ news.author.username}}</a></span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                {% endfor %}#}
             </ul>
         </div>
         <div class="more_group">

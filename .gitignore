@@ -1,5 +1,7 @@
 static/new_lainxi/
 templates/news_lianxi/
+static/images
 media/
 .idea
 *.pyc
+settings.py

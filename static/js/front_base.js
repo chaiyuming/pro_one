@@ -1,4 +1,4 @@
-$(function () {
+    $(function () {
     //判断只有当调用了template模板的才执行里面的代码
     //if (template)直接这样写回报template is not defined错误。
     // if (template){

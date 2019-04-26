@@ -46,9 +46,6 @@ $(function () {
                 if(result['code'] === 200){
                     // console.log(result)
                     var token=result['data']['token'];
-                    console.log('=====================');
-                    console.log(token);
-                    console.log('=====================');
                     //e.file表示文件的名字
                     player.setToken(e.file,token)
                 }else {

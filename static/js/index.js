@@ -7,8 +7,6 @@ $(function () {
         var category_id=liTags.attr('news_category_id');
         //因为从前端获取的为字符串，这里需将其转化为数字格式
         var page=parseInt(moreBtn.attr('data_page'));
-        console.log('category_id:',category_id);
-        console.log('page:',page);
         xfzajax.get({
             'url':'/news_list/',
             'data':{
@@ -17,7 +15,6 @@ $(function () {
             },
             'success':function (result){
                var newses=result['data'];
-               console.log(newses);
                if(newses.length>0){
                    var newsGroup=$('.news_group');
                // console.log(newses)
@@ -56,7 +53,6 @@ $(function () {
             'success':function (result) {
                 //获取新闻信息
                 var newses=result['data'];
-                console.log(result['data']);
             //       然后将新闻信息渲染到arttemplate中
                 var tpl=template('news_item',{'newses':newses});
                 //ul标签的值

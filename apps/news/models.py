@@ -26,7 +26,7 @@ class News(models.Model):
 class Comment(models.Model):
     content=models.TextField()
     pub_time=models.DateTimeField(auto_now_add=True)
-    # 给这个外键定义一个名字，方便一对多的时候直接查询（news.comments.all()）
+    # 给这个外键定义一个名字，方便一对多的时候直接查询（news.comments.all()）,CASCADE
     news=models.ForeignKey('News',on_delete=models.CASCADE,related_name='comments')
     author=models.ForeignKey('pro_one_auth.User',on_delete=models.CASCADE)
 

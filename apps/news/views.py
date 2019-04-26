@@ -55,8 +55,6 @@ def news_list(request):
     # 通过restful.result(data=newses)方式返回
     # return restful.result(data=newses)
     return restful.result(data=serializer.data)
-
-
 # 如果在url定义了参数，那么在视图函数中也要定义相应的函数
 def news_detail(request, news_id):
     # 捕获异常，当输入的新闻id错误时，就报404错误！
@@ -70,8 +68,6 @@ def news_detail(request, news_id):
     # 如果错误的类型为DoesNotExist,抛出Http404错误。
     except News.DoesNotExist:
         raise Http404
-
-
 @require_POST
 @xfz_login_required
 def add_comment(request):
@@ -90,8 +86,6 @@ def add_comment(request):
         return restful.result(data=serializer.data)
     else:
         return restful.params_error(message=form.get_error())
-
-
 def news_search(request):
     # q在前端中已经定义
     q = request.GET.get('q')
@@ -112,7 +106,6 @@ def news_search(request):
     else:
         print(2222222222222)
         context = {'news2': news2,}
-
     return render(request, 'news/search.html', context=context)
 
 # 搜索功能首页

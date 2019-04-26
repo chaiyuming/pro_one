@@ -5,7 +5,7 @@ from django.conf import settings
 import os,hashlib,hmac,time
 from utils import restful
 from hashlib import md5
-# 导入csrf_exempt关闭视图函数的csrf_token
+# 导入关闭视图函数的csrf_token
 from django.views.decorators.csrf import  csrf_exempt
 
 

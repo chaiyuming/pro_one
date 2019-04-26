@@ -108,9 +108,9 @@ $(function () {
             'success':function (result) {
                 if(result['code']===200){
                     console.log('----+++++++======');
-                    xfzalert.alertSuccess('添加成功',function () {
-                        window.location.reload();
-                    });
+                        xfzalert.alertSuccess('添加成功',function () {
+                            window.location.reload();
+                        });
                 }
             }
         });

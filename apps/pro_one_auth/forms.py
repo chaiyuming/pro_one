@@ -19,6 +19,9 @@ class LoginForm(forms.Form):
     remember=forms.IntegerField(required=False)
 
 class RegisterForm(forms.Form,FormMixin):
+    '''
+    表达某种校验的参数必须和ajax中data中的key对应，不然会有错。
+    '''
     telephone=forms.CharField(min_length=11,max_length=11,error_messages={
         'required':'必须放入11位手机号码',
         'min_length':'手机号码必须为11位',
